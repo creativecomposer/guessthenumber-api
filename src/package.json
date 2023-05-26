@@ -8,8 +8,7 @@
     "dev": "nodemon server.ts",
     "start": "NODE_ENV=\"production\" node ./bin/www",
     "test": "jest",
-    "test:watch": "jest --watch",
-    "prepare": "cd .. && node ./prepare.js"
+    "test:watch": "jest --watch"
   },
   "keywords": [],
   "dependencies": {
