@@ -1,0 +1,42 @@
+name: Trigger auto deployment for gtn-api
+
+# When this action will be executed
+on:
+  # Automatically trigger it when detected changes in repo
+  push:
+    branches: 
+      [ main ]
+    paths:
+    - 'src/**'
+    - '.github/workflows/gtn-api-AutoDeployTrigger-bc3842fd-5603-40bc-96fc-31c02e2500ed.yml'
+
+  # Allow mannually trigger 
+  workflow_dispatch:
+      
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout to the branch
+        uses: actions/checkout@v2
+
+      - name: Azure Login
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.GTNAPI_AZURE_CREDENTIALS }}
+
+      - name: Build and push container image to registry
+        uses: azure/container-apps-deploy-action@v1
+        with:
+          appSourcePath: ${{ github.workspace }}/src 
+          registryUrl: ca49113b4028acr.azurecr.io
+          registryUsername: ${{ secrets.GTNAPI_REGISTRY_USERNAME }}
+          registryPassword: ${{ secrets.GTNAPI_REGISTRY_PASSWORD }}
+          containerAppName: gtn-api
+          resourceGroup: gtn-containerapps
+          imageToBuild: ca49113b4028acr.azurecr.io/gtn-api:${{ github.sha }}
+          dockerfilePath: Dockerfile
+
+     
+
