@@ -9,7 +9,7 @@
     "start": "NODE_ENV=\"production\" node ./bin/www",
     "test": "jest",
     "test:watch": "jest --watch",
-    "prepare": "cd .. && husky install src/.husky"
+    "prepare": "cd .. && node -e \"try { require('husky').install('src/.husky') } catch (e) {if (e.code !== 'MODULE_NOT_FOUND') throw e}\""
   },
   "keywords": [],
   "dependencies": {
