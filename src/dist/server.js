@@ -6,19 +6,22 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var express_1 = __importDefault(require("express"));
 var morgan_1 = __importDefault(require("morgan"));
 var cors_1 = __importDefault(require("cors"));
-process.env.NODE_ENV = process.env.NODE_ENV || 'development';
+var routes_1 = __importDefault(require("./routes"));
+process.env.NODE_ENV = process.env.NODE_ENV || "development";
+process.env.JWT_SECRET = process.env.JWT_SECRET || "ssshhhhhh";
 var app = (0, express_1.default)();
 app.use((0, cors_1.default)());
-app.use((0, morgan_1.default)('dev'));
+app.use((0, morgan_1.default)("dev"));
 app.use(express_1.default.json());
 app.use(express_1.default.urlencoded({ extended: true }));
-app.get('/', function (_, res) {
+app.get("/", function (_, res) {
     res.status(200);
-    res.json({ message: 'Call one of the endpoints under /api/v1' });
+    res.json({ message: "Call one of the endpoints under /api/v1" });
 });
-if (process.env.NODE_ENV === 'development') {
-    app.listen(process.env.PORT || '3500', function () {
-        console.log('Server started');
+app.use("/api/v1", routes_1.default);
+if (process.env.NODE_ENV === "development") {
+    app.listen(process.env.PORT || "3500", function () {
+        console.log("Server started");
     });
 }
 else {

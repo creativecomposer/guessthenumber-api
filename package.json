@@ -1,0 +1,16 @@
+{
+  "name": "guessthenumber-api",
+  "version": "1.0.0",
+  "description": "Enable husky pre-commit hook for this repo",
+  "main": "prepare.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepare": "husky install"
+  },
+  "keywords": [],
+  "author": "Creative Composer",
+  "license": "ISC",
+  "devDependencies": {
+    "husky": "^8.0.0"
+  }
+}

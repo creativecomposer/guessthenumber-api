@@ -3,6 +3,39 @@
 This service implements an authenticated REST API for registered players to play the game
 "Guess the Number".
 
+## How to run the service in local machine
+
+```
+cd src
+npm i
+npm run dev
+```
+
+The service will listen on port 3500.
+
+## How to run the tests
+
+```
+cd src
+npm t
+```
+
+## Implementation notes
+
+1. I wrote only very few unit tests just to show my approach to testing. For a production app,
+   I typically write exhaustive positive and negative unit tests.
+
+2. I decided to use hard coded username and password to keep the scope limited. For a production
+   authtentication implementation, I would use a provider like Auth0 and not write my own
+   authentication solution.
+
+3. At the moment, the games are not tied to a user. When multiple users can register and play
+   the game, then it would make sense to relate games to users, so that users can modify only
+   the games that they started.
+
+4. This app is by no means production ready. From testing to configuration lot of work needs
+   to be done before it should be considered ready for production.
+
 ## App description
 
 Create two web services using JavaScript/TypeScript tech stack:
